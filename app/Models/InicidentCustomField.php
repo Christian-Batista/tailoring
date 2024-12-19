@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class InicidentCustomFieldModel extends Model
+class InicidentCustomField extends Model
 {
     protected $table = 'incident_custom_fields';
 
@@ -12,7 +12,7 @@ class InicidentCustomFieldModel extends Model
         'name',
         'field_type',
         'field_value',
-        'inicident_id',
+        'incident_id',
         'config',
     ];
 
@@ -22,6 +22,6 @@ class InicidentCustomFieldModel extends Model
 
     public function inicident()
     {
-        return $this->belongsTo(InicidentModel::class, 'inicident_id');
+        return $this->belongsTo(Incident::class, 'incident_id');
     }
 }

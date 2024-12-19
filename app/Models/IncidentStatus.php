@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class IncidentStatusModel extends Model
+class IncidentStatus extends Model
 {
     /**
      * The table associated with the model.
@@ -27,6 +27,11 @@ class IncidentStatusModel extends Model
 
     public function incident()
     {
-        return $this->belongsTo(InicidentModel::class, 'incident_id');
+        return $this->belongsTo(Incident::class, 'incident_id');
+    }
+
+    public function hooks()
+    {
+        return $this->hasMany(Hook::class);
     }
 }

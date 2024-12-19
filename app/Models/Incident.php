@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class InicidentModel extends Model
+class Incident extends Model
 {
     /**
      * The table associated with the model.
@@ -19,21 +19,15 @@ class InicidentModel extends Model
     protected $fillable = [
         'name',
         'description',
-        'service_level_id',
     ];
 
-    public function service_level()
+    public function customFields()
     {
-        return $this->hasOne(ServiceLevelModel::class, 'id', 'service_level_id');
-    }
-
-    public function custom_fields()
-    {
-        return $this->hasMany(InicidentCustomFieldModel::class);
+        return $this->hasMany(InicidentCustomField::class);
     }
 
     public function status()
     {
-        return $this->hasMany(IncidentStatusModel::class);
+        return $this->hasMany(IncidentStatus::class, 'incident_id');
     }
 }

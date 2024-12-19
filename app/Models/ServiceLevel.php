@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ServiceLevelModel extends Model
+class ServiceLevel extends Model
 {
     /**
      * The table associated with the model.
@@ -22,6 +22,6 @@ class ServiceLevelModel extends Model
 
     public function inicident()
     {
-        return $this->belongsTo(InicidentModel::class);
+        return $this->belongsTo(Incident::class);
     }
 }

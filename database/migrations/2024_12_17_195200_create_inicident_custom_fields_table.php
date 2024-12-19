@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inicident_custom_fields', function (Blueprint $table) {
+        Schema::create('incident_custom_fields', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('field_type');
             $table->string('field_value');
-            $table->integer('inicident_id');
+            $table->integer('incident_id');
             $table->json('config')->nullable();
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('inicident_custom_fields');
+        Schema::dropIfExists('incident_custom_fields');
     }
 };

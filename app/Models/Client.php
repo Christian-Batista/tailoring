@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ClientModel extends Model
+class Client extends Model
 {
     /**
      * The table associated with the model.
