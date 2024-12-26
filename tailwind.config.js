@@ -1,5 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 import preset from './vendor/filament/support/tailwind.config.preset'
+import colors from 'tailwindcss/colors' 
+import forms from '@tailwindcss/forms'
+import typography from '@tailwindcss/typography' 
 export default {
   presets: [preset],
     content: [
@@ -7,6 +10,8 @@ export default {
         './resources/views/filament/**/*.blade.php',
         './vendor/filament/**/*.blade.php',
     ],
+    darkMode: 'class',
+    
   theme: {
     extend: {
       colors: {
@@ -18,6 +23,9 @@ export default {
     },
     },
   },
-  plugins: [],
+  plugins: [
+    forms, 
+        typography, 
+  ],
 }
 
