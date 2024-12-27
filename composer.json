@@ -10,6 +10,7 @@
         "hasnayeen/themes": "^3.0",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
+        "owenvoke/blade-entypo": "^2.2",
         "spatie/laravel-permission": "^6.10"
     },
     "require-dev": {

@@ -26,14 +26,6 @@ class IncidentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Configuraciones';
-
-
-    public static function getNavigationLabel(): string
-    {
-        return ResourceUtility::getResourceProperty('Incident', 'label');
-    }
-
     public static function form(Form $form): Form
     {
         return $form
@@ -76,6 +68,17 @@ class IncidentResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return ResourceUtility::getResourceProperty('Incident', 'group');
+    }
+
+
+    public static function getNavigationLabel(): string
+    {
+        return ResourceUtility::getResourceProperty('Incident', 'label');
     }
 
     public static function getRelations(): array

@@ -7,23 +7,30 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     protected $fillable = [
-        'name',
-        'last_name',
+        'user_id',
         'phone_number',
         'emergency_contact',
         'photo',
-        'image',
         'address',
         'id_number',
-        'email',
-        'password',
     ];
 
     protected $casts = [
         'emergency_contact' => 'array',
+        'password' => 'hashed',
     ];
 
     protected $hidden = [
         'password',
     ];
+
+    /**
+     * The user that this employee belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
