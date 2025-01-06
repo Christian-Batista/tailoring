@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('field_type');
-            $table->string('field_value');
+            $table->string('field_value')->nullable();
             $table->integer('incident_id');
             $table->json('config')->nullable();
             $table->timestamps();

@@ -2,14 +2,15 @@
 
 namespace App\Filament\Resources\IncidentResource\FormSections;
 
-use Filament\Forms\Components\Group;
 use Filament\Forms\Get;
+use App\Models\Incident;
+use Illuminate\Support\HtmlString;
+use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Repeater;
 use Illuminate\Database\Eloquent\Model;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\TextInput;
-use Illuminate\Support\HtmlString;
+use Filament\Forms\Components\Placeholder;
 
 class TriggersForm
 {
@@ -26,15 +27,20 @@ class TriggersForm
                     </H1>
                     </div>'))
                     ->visible(fn($record) => !($record instanceof Model)),
-                Repeater::make('hooks')
-                    ->relationship('status.hooks')
+                Repeater::make('Hooks')
+                    ->relationship('hooks')
                     ->label('Hooks')
-                    ->itemLabel(fn (array $state): ?string => $state['action_type'] ?? null)
+                    ->itemLabel(function (array $state) {
+                        $incident = Incident::find($state['reference_id'])->value('name');
+                        if ($state['action_type'] === 'create_sub_task') {
+                            return (string)'Crear Sub-Tarea'. ' => '. $incident;
+                        }
+                    })
                     ->collapsed()
                     ->addActionLabel('Agregar Disparador')
                     ->visible(fn($record) => $record instanceof Model)
                     ->schema([
-                        TextInput::make('status_id')
+                        TextInput::make('incident_status_id')
                             ->default(fn ($record) => $record->id ?? null)
                             ->visible(false),
 
@@ -44,11 +50,7 @@ class TriggersForm
                             ->options([
                                 'create_sub_task' => 'Crear Sub-Tarea',
                             ])
-                            ->afterStateUpdated(function ($state, $set) {
-                                if ($state === 'create_sub_task') {
-                                    $set('config_type', 'sub_task');
-                                }
-                            }),
+                            ->reactive(),
 
                         // Mostrar el formulario adecuado según el valor de 'trigger'
                         Group::make()

@@ -13,11 +13,27 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $superAdmin = User::firstOrCreate([
+        // Create a super admin
+        $superAdminUser = User::firstOrCreate([
             'name' => 'Christian Batista',
             'email' => 'elcatchon@gmail.com',
             'password' => bcrypt('password'),
         ]);
-        $superAdmin->assignRole('super-admin');
+        $superAdminUser->assignRole('super-admin');
+
+        //
+        $adminUser = User::firstOrCreate([
+            'name' => 'Admin User',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('password'),
+        ]);
+        $adminUser->assignRole('admin');
+
+        $tailorAdmin = User::firstOrCreate([
+            'name' => 'Tailor User',
+            'email' => 'tailor@gmail.com',
+            'password' => bcrypt('password'),
+        ]);
+        $tailorAdmin->assignRole('tailor');
     }
 }

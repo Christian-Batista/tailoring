@@ -24,7 +24,7 @@ class IncidentResource extends Resource
 {
     protected static ?string $model = Incident::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'fluentui-task-list-square-add-24';
 
     public static function form(Form $form): Form
     {
@@ -55,7 +55,12 @@ class IncidentResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('id')
+                ->label('ID'),
+                Tables\Columns\TextColumn::make('name')
+                ->description(function($record) {
+                    return $record->description;
+                }),
             ])
             ->filters([
                 //

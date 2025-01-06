@@ -11,7 +11,7 @@ use Filament\Forms\Components\TextInput;
 class StatusForm
 {
     public static function make() {
-        return Repeater::make('Status')
+        return Repeater::make('status')
             ->itemLabel(fn (array $state): ? string => $state['name'] ?? null)
             ->collapsed(fn ($record) => $record instanceof IncidentStatus)
             ->relationship('status')
@@ -41,7 +41,7 @@ class StatusForm
                     }
 
                     return [];
-                })
+                })->columns(1)
 
             ])->columns(3);
     }

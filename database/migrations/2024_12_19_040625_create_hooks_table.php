@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string(column: 'action_type');
             $table->integer(column: 'reference_id')->nullable();
-            $table->integer('status_id');
+            $table->integer('incident_status_id');
             $table->json(column: 'value');
             $table->timestamps();
         });

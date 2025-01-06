@@ -26,7 +26,7 @@ class CreateSubTaskForm
                         $set('reference_id', $state);
                     })
                 ]),
-                ...DynamicCustomFieldSelector::make()
+                //...DynamicCustomFieldSelector::make()
         ];
     }
 }
