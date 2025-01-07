@@ -17,11 +17,6 @@ class Employee extends Model
 
     protected $casts = [
         'emergency_contact' => 'array',
-        'password' => 'hashed',
-    ];
-
-    protected $hidden = [
-        'password',
     ];
 
     /**

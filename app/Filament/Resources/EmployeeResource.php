@@ -16,12 +16,15 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\EmployeeResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\EmployeeResource\RelationManagers;
+use App\Filament\Resources\Utilities\ResourceUtility;
+use Filament\Forms\Components\Textarea;
 
 class EmployeeResource extends Resource
 {
     protected static ?string $model = Employee::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'clarity-employee-group-solid';
+    
 
     public static function form(Form $form): Form
     {
@@ -36,7 +39,8 @@ class EmployeeResource extends Resource
                         ->label('Nombre del empleado')
                         ->required()
                         ->prefixIcon('heroicon-o-user')
-                        ->prefixIconColor('primary'),
+                        ->prefixIconColor('primary')
+                        ->default(fn ($record): ?string => $record->user->name ?? null),
 
                         // Correo del empleado
                         Forms\Components\TextInput::make('user.email')
@@ -44,7 +48,8 @@ class EmployeeResource extends Resource
                         ->prefixIcon('heroicon-s-envelope-open')
                         ->prefixIconColor('primary')
                         ->required()
-                        ->email(),
+                        ->email()
+                        ->default(fn ($record) => $record?->user?->email),
 
                         // Cedula del empleado
                         Forms\Components\TextInput::make('id_number')
@@ -156,12 +161,18 @@ class EmployeeResource extends Resource
             ]);
     }
 
+    public static function getNavigationGroup(): ?string
+    {
+        return ResourceUtility::getResourceProperty('Employee', 'group');
+    }
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
+    
 
     public static function getPages(): array
     {
