@@ -29,7 +29,16 @@ class ResourceUtility
             'update_button' => 'Actualizar permiso',
             'delete_button' => 'Eliminar permiso',
         ],
+        'Role' => [
+            'label' => 'Roles',
+            'group' => 'Configuraciones',
+            'creation_label' => 'Creacion de rol',
+            'creation_button' => 'Crear rol',
+            'update_button' => 'Actualizar rol',
+            'delete_button' => 'Eliminar rol',
+        ],
     ];
+    
     public static function getResourceProperty(string $resourceName, string $property): ?string
     {
         // Verify if the resource exists
