@@ -12,7 +12,6 @@ class ResourceUtility
             'creation_button' => 'Crear incidencia',
             'update_button' => 'Actualizar incidencia',
             'delete_button' => 'Eliminar incidencia',
-            'icon' => 'heroicon-s-alert',
         ],
         'Employee' => [
             'label' => 'Empleados',
@@ -21,7 +20,14 @@ class ResourceUtility
             'creation_button' => 'Crear empleado',
             'update_button' => 'Actualizar empleado',
             'delete_button' => 'Eliminar empleado',
-            'icon' => 'heroicon-s-user',
+        ],
+        'Permission' => [
+            'label' => 'Permisos',
+            'group' => 'Configuraciones',
+            'creation_label' => 'Creacion de permiso',
+            'creation_button' => 'Crear permiso',
+            'update_button' => 'Actualizar permiso',
+            'delete_button' => 'Eliminar permiso',
         ],
     ];
     public static function getResourceProperty(string $resourceName, string $property): ?string
